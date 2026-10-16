@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Op 't Water</title>
+  <meta name="description" content="The printers and publishers of Amsterdam song books, 1600–1700, from the Dutch Song Database, on Gerrit de Broen's map of Amsterdam." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=IM+Fell+DW+Pica:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-028s5qDP.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Db_fUgcP.css">
+</head>
+<body>
+  <canvas id="scene" aria-label="Three-dimensional view of seventeenth-century Amsterdam"></canvas>
+  <div id="labels" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+  <div id="vignette" aria-hidden="true"></div>
+
+  <!-- title page ------------------------------------------------------- -->
+  <section id="titlepage" class="titlepage">
+    <div class="tp-inner">
+      <p class="tp-kicker">Een stadsgezicht van de liedboekenhandel</p>
+      <h1>Op 't Water</h1>
+      <p class="tp-sub">The printers &amp; publishers of Amsterdam song books<br/>in the seventeenth century</p>
+      <div class="tp-rule"><span>❦</span></div>
+      <p class="tp-body">
+        Every song book in the <em>Dutch Song Database</em> that names an Amsterdam printer or publisher,
+        placed at the address in its imprint, on Gerrit de Broen's engraved map of the city.
+        Watch the century fill the shops, then step down into the busiest street of the trade.
+      </p>
+      <button id="begin" class="btn-primary" disabled>
+        <span class="btn-label">Preparing the plates…</span>
+      </button>
+      <p class="tp-imprint">
+        t'AMSTERDAM, <span class="sc">Gedrukt voor de Liefhebbers</span>, <span id="tp-year">MMXXVI</span>
+      </p>
+      <div class="tp-progress" aria-hidden="true"><div id="tp-progress-bar"></div></div>
+    </div>
+  </section>
+
+  <!-- city chapter: header + year --------------------------------------- -->
+  <header id="hud" class="hud hidden">
+    <div class="hud-left">
+      <div class="hud-title">Op 't Water</div>
+      <div class="hud-sub">Song-book printers &amp; publishers of Amsterdam</div>
+    </div>
+    <div class="hud-year" aria-live="polite">
+      <div class="anno">ANNO</div>
+      <div id="roman" class="roman">M·DC</div>
+      <div id="arabic" class="arabic">1600</div>
+    </div>
+  </header>
+
+  <!-- left column: the press (latest book) ------------------------------ -->
+  <aside id="press" class="press hidden" aria-live="polite">
+    <div class="press-head">Fresh from the press</div>
+    <div id="press-list" class="press-list"></div>
+  </aside>
+
+  <!-- legend ------------------------------------------------------------ -->
+  <aside id="legend" class="legend hidden">
+    <div class="legend-title">Each book is a song book</div>
+    <div class="legend-row"><span class="sw sw-w"></span> secular</div>
+    <div class="legend-row"><span class="sw sw-g"></span> sacred</div>
+    <div class="legend-row"><span class="sw sw-m"></span> secular &amp; sacred</div>
+    <div class="legend-row"><span class="sw sw-u"></span> not recorded</div>
+    <div class="legend-note">Thicker volumes hold more songs. Books stack at the shop where they were printed or sold.</div>
+    <div id="legend-stats" class="legend-stats"></div>
+    <div class="legend-map">
+      <div class="legend-title">The map beneath <kbd>M</kbd></div>
+      <div class="map-switch" role="group" aria-label="Map">
+        <button data-map="debroen" class="on" title="Gerrit de Broen's map of Amsterdam, eighteenth century">De Broen</button>
+        <button data-map="berckenrode" title="Balthasar Florisz. van Berckenrode's bird's-eye map of Amsterdam, 1625">Berckenrode 1625</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- timeline ------------------------------------------------------------ -->
+  <footer id="timeline" class="timeline hidden">
+    <button id="play" class="icon-btn" aria-label="Pause">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path id="play-icon" d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg>
+    </button>
+    <div class="tl-track" id="tl-track">
+      <svg id="tl-hist" preserveAspectRatio="none"></svg>
+      <div id="tl-head" class="tl-head"></div>
+      <div class="tl-ticks" id="tl-ticks"></div>
+    </div>
+    <div class="tl-speed" role="group" aria-label="Speed">
+      <button data-speed="0.5">½×</button><button data-speed="1" class="on">1×</button><button data-speed="3">3×</button>
+    </div>
+    <button id="to-street" class="btn-street">Walk the busiest street →</button>
+  </footer>
+
+  <!-- ranking card ------------------------------------------------------ -->
+  <section id="ranking" class="card ranking hidden" aria-labelledby="rk-title">
+    <div class="card-kicker">The busiest street of the song-book trade</div>
+    <h2 id="rk-title">'t Water</h2>
+    <p id="rk-text" class="rk-text"></p>
+    <div id="rk-chart" class="rk-chart"></div>
+    <div class="rk-actions">
+      <button id="descend" class="btn-primary"><span class="btn-label">Descend to 't Water</span></button>
+      <button id="rk-close" class="btn-quiet">Stay above the city</button>
+    </div>
+  </section>
+
+  <!-- street chapter ----------------------------------------------------- -->
+  <header id="street-hud" class="street-hud hidden">
+    <div class="sh-title"><span id="sh-name">'t Water</span><span id="sh-sub" class="sh-sub">the quay along the Damrak</span></div>
+    <div class="sh-year">
+      <label for="sh-range">The street in</label>
+      <input id="sh-range" type="range" min="1595" max="1705" step="1" value="1705" />
+      <output id="sh-year-out">all signs</output>
+    </div>
+  </header>
+  <div id="street-controls" class="street-controls hidden">
+    <button id="stroll" class="btn-quiet" aria-pressed="false">Stroll ▸</button>
+    <button id="to-city" class="btn-quiet">↑ Back to the map</button>
+    <select id="street-pick" class="street-pick" aria-label="Choose a street"></select>
+    <div class="keys"><kbd>W A S D</kbd> walk · drag to look · <kbd>Space</kbd> stroll · click a sign</div>
+  </div>
+  <canvas id="minimap" class="minimap hidden" width="220" height="220" aria-hidden="true"></canvas>
+
+  <!-- detail card (printer or book) -------------------------------------- -->
+  <section id="detail" class="card detail hidden" aria-live="polite">
+    <button id="detail-close" class="close" aria-label="Close">×</button>
+    <div id="detail-body"></div>
+  </section>
+
+  <div id="tooltip" class="tooltip hidden"></div>
+  <div id="toast" class="toast hidden"></div>
+
+</body>
+</html>
