@@ -4,7 +4,7 @@ The printers and publishers of Amsterdam song books in the seventeenth century, 
 the Dutch Song Database, placed at the addresses in their imprints on an engraved map
 of Amsterdam, and walkable in 3D as their street stood in any year of the century.
 
-**Live:** https://fbkarsdorp.github.io/amsterdam-song-map/
+**Live:** https://www.karsdorp.io/amsterdam-song-map/
 
 1. **The map.** Gerrit de Broen's engraved map of Amsterdam, or Berckenrode's
    bird's-eye view of 1625 (press `M`).
