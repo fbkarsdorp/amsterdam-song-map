@@ -15,6 +15,8 @@ of Amsterdam, and walkable in 3D as their street stood in any year of the centur
 4. **The walk.** The houses stand on the plots of the 1832 cadastre, each with the front
    it had in the year shown. The printers' shops are open, with their painted signs.
    Walk with `W A S D` (drag to look), or press `Space` to stroll from shop to shop.
+5. **The sound.** Switch on **Sound** in the street for the open air, gulls over the
+   Damrak, and the church bells: a short chime before about 1658, a carillon tune after.
 
 This repository holds the built site only: static HTML, JavaScript and JSON. It needs
 a network connection for the map tiles.
@@ -30,6 +32,10 @@ a network connection for the map tiles.
 - **House plots and the city behind the street:** the 1832 cadastre from HisGIS
   Amsterdam, via "Amsterdam huurwaarden 1832", University of Amsterdam, CC BY 4.0,
   https://zenodo.org/records/6949127.
+- **Sounds:** the air is made in the browser. Gulls: Sonothèque ADVL (CC0). Quarter chime
+  and hour bell of St. Georgen, St. Gallen: Martin Thurnherr (CC BY-SA 4.0). Carillon of
+  the Vor Frelsers Kirke, Copenhagen: Ib Rasmussen (public domain). All via Wikimedia
+  Commons; not Amsterdam bells. Details in `sounds/CREDITS.md`.
 - **Street centrelines and a few landmark footprints:** © OpenStreetMap contributors,
   ODbL.
 
